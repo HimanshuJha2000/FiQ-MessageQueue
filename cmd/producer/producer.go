@@ -1,4 +1,4 @@
-package main
+package cmd
 
 import (
 	"github.com/DevtronLabs/GoToProject/common"
@@ -9,7 +9,7 @@ import (
 	"syscall"
 )
 
-func main() {
+func StartingProducer() {
 	done := make(chan struct{})
 	producer := make(chan common.InputMessage)
 

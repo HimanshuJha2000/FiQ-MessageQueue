@@ -1,12 +1,14 @@
 package service
 
 import (
+	"fmt"
 	"github.com/DevtronLabs/GoToProject/common"
 	service2 "github.com/DevtronLabs/GoToProject/internal/service"
 	"github.com/stretchr/testify/assert"
 	"io"
 	"io/ioutil"
 	"os"
+	"path/filepath"
 	"syscall"
 	"testing"
 	"time"
@@ -84,4 +86,51 @@ func TestProcessMessage(t *testing.T) {
 	// Check that the processing time is within an acceptable range
 	assert.InDelta(t, float64(elapsedTime), float64(msg.ProcessingTime), float64(10*time.Millisecond), "Unexpected processing time")
 
+}
+
+func TestProcessTopicDir(t *testing.T) {
+	// Create a temporary directory for testing
+	tempDir, err := ioutil.TempDir("", "test_topic_dir")
+	if err != nil {
+		t.Fatalf("Failed to create temporary directory: %v", err)
+	}
+	defer cleanupTempDir(tempDir)
+
+	// Create some test files inside the temporary directory
+	testFiles := []string{"file1.txt", "file2.txt", "file3.txt"}
+	for _, filename := range testFiles {
+		filePath := filepath.Join(tempDir, filename)
+		if err := ioutil.WriteFile(filePath, []byte("test"), 0644); err != nil {
+			t.Fatalf("Failed to create test file %s: %v", filename, err)
+		}
+	}
+
+	// Set up the message channel
+	messageCh := make(chan string, len(testFiles))
+
+	// Call the function under test
+	service2.ProcessTopicDir(tempDir, messageCh)
+
+	// Verify the messages received
+	expectedMessages := []string{"test", "test", "test"}
+	for i, expected := range expectedMessages {
+		received := <-messageCh
+		if received != expected {
+			t.Errorf("Mismatched message at index %d. Expected: %s, Received: %s", i, expected, received)
+		}
+	}
+
+	// Ensure that no extra messages were sent
+	select {
+	case received := <-messageCh:
+		t.Errorf("Received unexpected extra message: %s", received)
+	default:
+		// No extra messages, which is expected
+	}
+}
+
+func cleanupTempDir(tempDir string) {
+	if err := os.RemoveAll(tempDir); err != nil {
+		fmt.Printf("Failed to clean up temporary directory %s: %v\n", tempDir, err)
+	}
 }

@@ -1,5 +1,15 @@
 # producer-consumer
 
+## Features :
+
+1. Supports multiple consumers(consumer group) functionality.
+2. Supports a CLI based interface for easy operation.
+3. Have relevant validations for input.
+4. Can run multiple workers within a consumer to process messages.
+5. Retains messages even if the producer/consumer stops working.
+6. Supports topic based message proceassing and storing.
+
+
 ## Assumptions : 
 
 1. Key is being considered as what topic is in kafka.

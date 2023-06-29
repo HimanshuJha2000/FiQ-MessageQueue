@@ -24,7 +24,7 @@
 2. Choose what to operate :`0` for consumer and `1` for producer
 
 3. For Producer, the message format should be key:message:processing_time:count
- Sample message will be : bjsjdw:jhsasajsajkhsaS:5s:2
+ Sample message will be : my_topic:my_message:5s:message_count
 
 4. For consumer, pass the number of concurrent workers you want to operater- <concurrent_worker>
 

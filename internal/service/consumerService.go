@@ -85,20 +85,25 @@ func ProcessTopicDir(topicDir string, messageCh chan<- string) {
 		return
 	}
 
+	fileWg := sync.WaitGroup{}
 	// Process each file and send messages to the channel
 	for _, file := range files {
 		if !file.IsDir() {
 			filePath := filepath.Join(topicDir, file.Name())
-			processFile(filePath, messageCh)
+			fileWg.Add(1)
+			go processFile(filePath, messageCh, &fileWg)
 		}
 	}
+	// Wait for all files to be processed
+	fileWg.Wait()
 }
 
-func processFile(filePath string, messageCh chan<- string) {
+func processFile(filePath string, messageCh chan<- string, wg *sync.WaitGroup) {
 	// Read the contents of the file
 	content, err := ioutil.ReadFile(filePath)
 	if err != nil {
 		fmt.Printf("Failed to read file %s: %v\n", filePath, err)
+		wg.Done()
 		return
 	}
 
@@ -114,11 +119,15 @@ func processFile(filePath string, messageCh chan<- string) {
 		messageCh <- message
 	}
 
+	wg.Wait()
+
 	// Remove the processed file
 	err = os.Remove(filePath)
 	if err != nil {
 		fmt.Printf("Failed to remove file %s: %v\n", filePath, err)
 	}
+
+	wg.Done()
 }
 
 func worker(id int, messageCh <-chan string) {

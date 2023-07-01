@@ -24,12 +24,12 @@ func InitProducer(producerObj controllers.ProducerInterface, producer chan<- com
 	go producerObj.Run(producer)
 }
 
-func StartProducing(producerObj controllers.ProducerInterface, consumer chan common.InputMessage, done <-chan struct{}) {
+func StartProducing(producerObj controllers.ProducerInterface, producer chan common.InputMessage, done <-chan struct{}) {
 	for {
 		select {
 		case <-done:
 			return
-		case inputMsg := <-consumer:
+		case inputMsg := <-producer:
 			producerObj.ProcessMessage(inputMsg)
 		}
 	}

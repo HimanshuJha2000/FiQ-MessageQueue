@@ -19,6 +19,7 @@ func (producerObj *ProducerStruct) ProcessMessage(inputMessage common.InputMessa
 	err := producerObj.producerService.WriteToQueueFile(inputMessage)
 	if err != nil {
 		fmt.Print("Error occurred while writing this message to the file ", inputMessage)
+		return
 	}
 }
 

@@ -74,7 +74,7 @@ func (service ConsumerServiceObj) RunConsumer(consumer <-chan common.InputMessag
 	// Wait for all workers to finish
 	wg.Wait()
 
-	fmt.Println("FiQ Consumer completed")
+	fmt.Println("fiq_queue consumer consumption completed")
 }
 
 func ProcessTopicDir(topicDir string, messageCh chan<- string) {

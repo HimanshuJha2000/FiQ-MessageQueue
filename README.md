@@ -2,6 +2,7 @@
 
 ## Features :
 
+
 1. Supports multiple consumers(consumer group) functionality.
 2. Supports a CLI based interface for easy operation.
 3. Have relevant validations for input.

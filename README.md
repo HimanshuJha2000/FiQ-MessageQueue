@@ -34,11 +34,6 @@
 
 - For consumer, pass the number of concurrent workers you want to operater- <concurrent_worker>
 
-### In Docker:
-
-
-
-
 ### Contributing
 Contributions to FiQ are welcome! If you find a bug or want to add a new feature, please open an issue or submit a pull request.
 

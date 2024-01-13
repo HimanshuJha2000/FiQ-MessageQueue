@@ -2,8 +2,8 @@ package controllers
 
 import (
 	"fmt"
-	"github.com/DevtronLabs/GoToProject/common"
-	"github.com/DevtronLabs/GoToProject/internal/service"
+	"github.com/MyOrg/FiQ-MessageQueue/common"
+	"github.com/MyOrg/FiQ-MessageQueue/internal/service"
 )
 
 type ProducerInterface interface {

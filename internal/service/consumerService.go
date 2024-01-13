@@ -3,8 +3,8 @@ package service
 import (
 	"bufio"
 	"fmt"
-	"github.com/DevtronLabs/GoToProject/common"
-	"github.com/DevtronLabs/GoToProject/internal/constants"
+	"github.com/MyOrg/FiQ-MessageQueue/common"
+	"github.com/MyOrg/FiQ-MessageQueue/internal/constants"
 	"io/ioutil"
 	"os"
 	"path/filepath"

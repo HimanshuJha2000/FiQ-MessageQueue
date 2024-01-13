@@ -1,8 +1,8 @@
 package bootstrap
 
 import (
-	"github.com/DevtronLabs/GoToProject/common"
-	"github.com/DevtronLabs/GoToProject/internal/controllers"
+	"github.com/MyOrg/FiQ-MessageQueue/common"
+	"github.com/MyOrg/FiQ-MessageQueue/internal/controllers"
 )
 
 func InitConsumer(consumerObj controllers.ConsumerInterface, consumer <-chan common.InputMessage) {

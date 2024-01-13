@@ -3,9 +3,9 @@ package service
 import (
 	"bufio"
 	"fmt"
-	"github.com/DevtronLabs/GoToProject/common"
-	"github.com/DevtronLabs/GoToProject/internal/constants"
-	"github.com/DevtronLabs/GoToProject/pkg/utils"
+	"github.com/MyOrg/FiQ-MessageQueue/common"
+	"github.com/MyOrg/FiQ-MessageQueue/internal/constants"
+	"github.com/MyOrg/FiQ-MessageQueue/pkg/utils"
 	"os"
 	"strings"
 	"sync"

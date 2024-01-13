@@ -1,9 +1,9 @@
 package cmd
 
 import (
-	"github.com/DevtronLabs/GoToProject/common"
-	"github.com/DevtronLabs/GoToProject/internal/bootstrap"
-	"github.com/DevtronLabs/GoToProject/internal/controllers"
+	"github.com/MyOrg/FiQ-MessageQueue/common"
+	"github.com/MyOrg/FiQ-MessageQueue/internal/bootstrap"
+	"github.com/MyOrg/FiQ-MessageQueue/internal/controllers"
 	"os"
 	"os/signal"
 	"syscall"
